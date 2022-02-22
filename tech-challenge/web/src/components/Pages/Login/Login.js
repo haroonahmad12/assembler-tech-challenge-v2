@@ -59,6 +59,7 @@ const Login = () => {
                   className="btn btn-lg btn-block btn-primary"
                   style={{ backgroundColor: "#dd4b39" }}
                   type="submit"
+                  onClick={signInWithGoogle}
                 >
                   <i className="fab fa-google me-2"></i> Sign in with google
                 </button>
