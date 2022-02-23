@@ -22,7 +22,9 @@
 ### Screenshots
 
 - Login Screen
-  ![Login]("screenshots\SignIn.png")
+ 
+  <img src="https://user-images.githubusercontent.com/85195876/155417713-15816262-79bb-4610-a60f-ed4421b70020.png" width="500" height="250" />
 
 - Dashboard Screen
-  ![Dashboard]("screenshots\Dashboard.png")
+
+  <img src="https://user-images.githubusercontent.com/85195876/155417742-7065abb3-19f3-46ce-a9d0-84ea7c692d1b.png"  width="500" height="250"/>
