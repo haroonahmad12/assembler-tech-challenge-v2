@@ -5,8 +5,8 @@ const { json } = require("body-parser");
 const cors = require("cors");
 
 const { config } = require("./config");
-const { errorMiddleware } = require("./middlewares");
-const { userRouter } = require("./routes");
+const { errorMiddleware } = require("./middleware");
+const { userRouter, imageRouter } = require("./routes");
 
 const app = express();
 
@@ -16,10 +16,11 @@ app.use(json());
 app.use(
   cors({
     origin: config.client.url,
-  }),
+  })
 );
 
 app.use(userRouter);
+app.use(imageRouter);
 
 app.get("/", (req, res) => {
   res.status(200).send({

@@ -19,8 +19,6 @@ if (!firebase.apps.length) {
   firebase.app();
 }
 
-console.log(process.env, process.env.REACT_APP_API_KEY);
-
 const auth = firebase.auth();
 
 export function onAuthStateChanged(...props) {

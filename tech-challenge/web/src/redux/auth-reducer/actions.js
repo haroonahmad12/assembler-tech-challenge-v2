@@ -1,6 +1,7 @@
 import * as AuthTypes from "./types";
 import api from "../../api";
 import * as auth from "../../services/auth";
+import { getImages, saveImageDb } from "../../api/api-image";
 
 export const resetStoreAndLogOut = () => ({
   type: AuthTypes.RESET_STORE_AND_LOG_OUT,
@@ -13,6 +14,16 @@ export const signUpRequest = () => ({
 export const signUpError = (message) => ({
   type: AuthTypes.SIGN_UP_ERROR,
   payload: message,
+});
+
+export const updateImagesArray = (list) => ({
+  type: AuthTypes.UPDATE_IMAGES_ARRAY,
+  payload: list,
+});
+
+export const addUploadedImage = (image) => ({
+  type: AuthTypes.ADD_IMAGE,
+  payload: image,
 });
 
 export function signUpWithGoogleRequest() {
@@ -64,7 +75,9 @@ export function syncSignIn() {
       return dispatch(signUpError(response.errorMessage));
     }
 
-    return dispatch(signUpSuccess(response.data));
+    getAllImages(dispatch);
+
+    return dispatch(signUpSuccess(response.data.data.data));
   };
 }
 
@@ -106,9 +119,31 @@ export const signOutError = (message) => ({
   payload: message,
 });
 
+export const setIsLoadingImageList = (status) => ({
+  type: AuthTypes.LOADING_IMAGE_LIST,
+  payload: status,
+});
+
 export const signOutSuccess = () => ({
   type: AuthTypes.SIGN_OUT_SUCCESS,
 });
+
+export const saveImageData = async (url, token, dispatch) => {
+  const res = await saveImageDb(url, token);
+  dispatch(addUploadedImage(res.data.data.data));
+};
+
+export const getAllImages = async (dispatch) => {
+  const token = await auth.getCurrentUserToken();
+
+  dispatch(setIsLoadingImageList(true));
+
+  if (token) {
+    const images = await getImages(token);
+    dispatch(setIsLoadingImageList(false));
+    dispatch(updateImagesArray(images.data.data.data));
+  }
+};
 
 export function sendPasswordResetEmail(email) {
   return async function sendPasswordResetEmailRequestThunk(dispatch) {

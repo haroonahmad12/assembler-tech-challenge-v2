@@ -5,7 +5,7 @@ const {
   MONGO_DB_URL_PRODUCTION,
   MONGO_DB_URL_DEVELOPMENT,
   MONGO_DB_URL_TEST,
-  PORT = 4000,
+  PORT,
 } = process.env;
 
 const baseConfig = {

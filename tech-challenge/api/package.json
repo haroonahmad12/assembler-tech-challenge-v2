@@ -19,13 +19,8 @@
   },
   "contributors": [
     {
-      "name": "Dani Lucaci",
-      "email": "danilucaci@gmail.com",
-      "url": "https://www.danilucaci.com/"
-    },
-    {
-      "name": "Joan Carrion",
-      "email": "joancarrion14@gmail.com"
+      "name": "haroon ahmad",
+      "email": "haroon334@gmail.com"
     }
   ],
   "license": "MIT",
@@ -48,7 +43,7 @@
     "firebase-admin": "^9.5.0",
     "helmet": "^4.4.1",
     "loglevel": "^1.7.1",
-    "mongoose": "^5.11.14",
+    "mongoose": "^5.13.14",
     "morgan": "^1.10.0",
     "validator": "^13.5.2"
   },

@@ -24,7 +24,7 @@ export async function normalizeResponse(promise = Promise.resolve) {
 
 export function makeRequest(
   httpClient = axios,
-  baseURL = process.env.FB_API_BASE_URL,
+  baseURL = process.env.REACT_APP_API_BASE_URL,
   baseHeaders = {
     Accept: "application/json",
   }

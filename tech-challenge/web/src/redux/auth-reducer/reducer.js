@@ -11,7 +11,10 @@ export const AuthInitialState = {
   passwordResetSent: false,
   currentUser: {
     email: null,
+    uid: null,
   },
+  imageList: [],
+  isLoadingImageList: false,
 };
 
 const AuthReducer = (state = AuthInitialState, action) => {
@@ -38,6 +41,7 @@ const AuthReducer = (state = AuthInitialState, action) => {
         signUpError: null,
         currentUser: {
           email: action.payload.email,
+          id: action.payload._id,
         },
       };
     }
@@ -100,6 +104,26 @@ const AuthReducer = (state = AuthInitialState, action) => {
         isSendingPasswordReset: false,
         passwordResetError: null,
         passwordResetSent: false,
+      };
+    }
+    case AuthTypes.UPDATE_IMAGES_ARRAY: {
+      return {
+        ...state,
+        imageList: [...action.payload],
+      };
+    }
+
+    case AuthTypes.LOADING_IMAGE_LIST: {
+      return {
+        ...state,
+        isLoadingImageList: action.payload,
+      };
+    }
+
+    case AuthTypes.ADD_IMAGE: {
+      return {
+        ...state,
+        imageList: [...state.imageList, action.payload],
       };
     }
     default: {

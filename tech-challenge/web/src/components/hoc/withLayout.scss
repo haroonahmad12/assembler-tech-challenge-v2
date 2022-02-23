@@ -1,0 +1,32 @@
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+  color: rgb(48, 46, 46);
+  background-color: lightgray;
+  display: inline-block;
+  border-radius: 999px;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  background-color: rgb(59, 58, 58);
+  color: rgb(182, 179, 179);
+}
+
+.inputfile:focus + label {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label * {
+  pointer-events: none;
+}

@@ -1,11 +1,38 @@
-import React, { useState } from "react";
-import { signInWithEmailRequest } from "../../../redux/auth-reducer/actions";
-import { singInWithGoogle } from "../../../services/auth";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {
+  signInWithEmailRequest,
+  signUpWithGoogleRequest,
+} from "../../../redux/auth-reducer/actions";
+import { authSelector } from "../../../redux/auth-reducer/selectors";
+import * as ROUTES from "../../../Routes";
+
 import "./login.scss";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPass] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isAuthenticated } = useSelector(authSelector);
+
+  const handleLoginWithGoogle = (e) => {
+    e.preventDefault();
+    dispatch(signUpWithGoogleRequest());
+  };
+
+  const handleLoginWithEmailAndPass = (e) => {
+    e.preventDefault();
+
+    dispatch(signInWithEmailRequest(email, password));
+  };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate(ROUTES.HOME);
+    }
+  }, [isAuthenticated]);
 
   return (
     <section className="vh-100 gradient-custom">
@@ -16,13 +43,7 @@ const Login = () => {
               className="card shadow-2-strong"
               style={{ borderRadius: "1rem" }}
             >
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  // signInWithEmailRequest(email, password);
-                  console.log(email, password);
-                }}
-              >
+              <form onSubmit={handleLoginWithEmailAndPass}>
                 <div className="card-body p-5 text-center ">
                   <h3 className="mb-5">Sign in</h3>
 
@@ -77,7 +98,7 @@ const Login = () => {
                     className="btn btn-lg btn-block btn-primary"
                     style={{ backgroundColor: "#dd4b39" }}
                     type="submit"
-                    onClick={singInWithGoogle}
+                    onClick={handleLoginWithGoogle}
                   >
                     <i className="fab fa-google me-2"></i> Sign in with google
                   </button>

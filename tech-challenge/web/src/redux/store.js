@@ -9,7 +9,7 @@ import storage from "redux-persist/lib/storage";
 import rootReducer from "./reducer";
 
 const persistConfig = {
-  key: "apollofy-music-project-client",
+  key: "tech-challenge",
   storage,
 };
 
