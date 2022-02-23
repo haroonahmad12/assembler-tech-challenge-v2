@@ -22,7 +22,7 @@
 ### Screenshots
 
 - Login Screen
-  ![Login]("tech-challenge\screenshots\SignIn.png")
+  ![Login]("screenshots\SignIn.png")
 
 - Dashboard Screen
-  ![Dashboard]("tech-challenge\screenshots\Dashboard.png")
+  ![Dashboard]("screenshots\Dashboard.png")
